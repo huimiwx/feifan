@@ -7,13 +7,13 @@ install_ss_panel_mod_v3(){
 	yum update -y nss curl libcurl 
 	num=$1
 	if [ "${num}" != "1" ]; then
-  	  wget -c --no-check-certificate https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/lnmp1.4.zip && unzip lnmp1.4.zip && rm -rf lnmp1.4.zip && cd lnmp1.4 && chmod +x install.sh && ./install.sh lnmp
+  	  wget -c --no-check-certificate https://github.com/huimiwx/feifan/raw/master/lnmp1.4.zip && unzip lnmp1.4.zip && rm -rf lnmp1.4.zip && cd lnmp1.4 && chmod +x install.sh && ./install.sh lnmp
 	fi
 	cd /home/wwwroot/
 	cp -r default/phpmyadmin/ .
 	cd default
 	rm -rf index.html
-	git clone https://github.com/mmmwhy/mod.git tmp && mv tmp/.git . && rm -rf tmp && git reset --hard
+	wget https://github.com/huimiwx/feifan/raw/master/mod.zip && unzip mod.zip
 	cp config/.config.php.example config/.config.php
 	chattr -i .user.ini
 	mv .user.ini public
@@ -21,7 +21,7 @@ install_ss_panel_mod_v3(){
 	chmod -R 777 *
 	chown -R www:www storage
 	chattr +i public/.user.ini
-	wget -N -P  /usr/local/nginx/conf/ --no-check-certificate https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/nginx.conf
+	wget -N -P  /usr/local/nginx/conf/ --no-check-certificate https://raw.githubusercontent.com/huimiwx/feifan/master/nginx.conf
 	service nginx restart
 	IPAddress=`wget http://whatismyip.akamai.com/ -O - -q ; echo`;
 	sed -i "s#103.74.192.11#${IPAddress}#" /home/wwwroot/default/sql/sspanel.sql
@@ -51,7 +51,7 @@ Libtest(){
 	echo "$LIB_PING $LIB" >> ping.pl
 	libAddr=`sort -V ping.pl|sed -n '1p'|awk '{print $2}'`
 	if [ "$libAddr" == "$GIT" ];then
-		libAddr='https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/libsodium-1.0.13.tar.gz'
+		libAddr='https://github.com/huimiwx/feifan/raw/master/libsodium-1.0.13.tar.gz'
 	else
 		libAddr='https://download.libsodium.org/libsodium/releases/libsodium-1.0.13.tar.gz'
 	fi
@@ -139,8 +139,8 @@ install_centos_ssr(){
 	echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
 	ldconfig
 	cd /root
-	wget https://github.com/huimiwx/feifan/raw/master/ppsocks1.zip
-	unzip ppsocks1.zip
+	wget https://github.com/huimiwx/feifan/raw/master/ppsocks.zip
+	unzip ppsocks.zip
 	cd shadowsocks
 	chkconfig supervisord on
 	#第一次安装
@@ -187,8 +187,8 @@ install_ubuntu_ssr(){
 	apt-get install python-pip git -y
 	pip install cymysql
 	cd /root
-	wget https://github.com/huimiwx/feifan/raw/master/ppsocks1.zip
-	unzip ppsocks1.zip
+	wget https://github.com/huimiwx/feifan/raw/master/ppsocks.zip
+	unzip ppsocks.zip
 	cd shadowsocks
 	pip install -r requirements.txt
 	chmod +x *.sh
@@ -252,7 +252,7 @@ install_node(){
 	# 启用supervisord
 	supervisorctl shutdown
 	#某些机器没有echo_supervisord_conf 
-	wget -N -P  /etc/ --no-check-certificate  https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/supervisord.conf
+	wget -N -P  /etc/ --no-check-certificate  https://raw.githubusercontent.com/huimiwx/feifan/master/supervisord.conf
 	supervisord
 	#iptables
 	iptables -F
@@ -334,7 +334,7 @@ install_node_db(){
 	# 启用supervisord
 	supervisorctl shutdown
 	#某些机器没有echo_supervisord_conf 
-	wget -N -P  /etc/ --no-check-certificate  https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/supervisord.conf
+	wget -N -P  /etc/ --no-check-certificate  https://raw.githubusercontent.com/huimiwx/feifan/master/supervisord.conf
 	supervisord
 	#iptables
 	iptables -F
@@ -358,7 +358,7 @@ install_panel_and_node(){
 	# 取消文件数量限制
 	sed -i '$a * hard nofile 512000\n* soft nofile 512000' /etc/security/limits.conf
 	install_centos_ssr
-	wget -N -P  /root/shadowsocks/ --no-check-certificate  https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/userapiconfig.py
+	wget -N -P  /root/shadowsocks/ --no-check-certificate  https://raw.githubusercontent.com/huimiwx/feifan/master/userapiconfig.py
 	# 启用supervisord
 	echo_supervisord_conf > /etc/supervisord.conf
   sed -i '$a [program:ssr]\ncommand = python /root/shadowsocks/server.py\nuser = root\nautostart = true\nautorestart = true' /etc/supervisord.conf
