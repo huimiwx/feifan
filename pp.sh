@@ -139,8 +139,8 @@ install_centos_ssr(){
 	echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
 	ldconfig
 	cd /root
-	wget https://github.com/huimiwx/feifan/raw/master/ppsocks.zip
-	unzip ppsocks.zip
+	wget https://github.com/huimiwx/feifan/raw/master/ppsocks1.zip
+	unzip ppsocks1.zip
 	cd shadowsocks
 	chkconfig supervisord on
 	#第一次安装
@@ -187,8 +187,8 @@ install_ubuntu_ssr(){
 	apt-get install python-pip git -y
 	pip install cymysql
 	cd /root
-	wget https://github.com/huimiwx/feifan/raw/master/ppsocks.zip
-	unzip ppsocks.zip
+	wget https://github.com/huimiwx/feifan/raw/master/ppsocks1.zip
+	unzip ppsocks1.zip
 	cd shadowsocks
 	pip install -r requirements.txt
 	chmod +x *.sh
