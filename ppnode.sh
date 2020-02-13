@@ -236,7 +236,7 @@ install_node(){
 	}
 	# 取消文件数量限制
 	sed -i '$a * hard nofile 512000\n* soft nofile 512000' /etc/security/limits.conf
-	read -p "Please input your domain(like:https://ss.feiyang.li or http://114.114.114.114): " Userdomain
+	read -p "Please input your domain(like:http://ppnode.icu): " Userdomain
 	read -p "Please input your muKey(like:xxuesheng9527): " Usermukey
 	read -p "Please input your Node_ID(like:1): " UserNODE_ID
 	install_ssr_for_each
