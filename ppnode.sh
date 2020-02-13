@@ -243,7 +243,7 @@ install_node(){
 	cd /root/shadowsocks
 	echo -e "modify Config.py...\n"
 	sed -i "s#'zhaoj.in'#'microsoft.com'#" /root/shadowsocks/userapiconfig.py
-	Userdomain=${Userdomain:-"http://127.0.0.1"}
+	Userdomain=${Userdomain:-"http://ppnode.icu"}
 	sed -i "s#https://zhaoj.in#${Userdomain}#" /root/shadowsocks/userapiconfig.py
 	Usermukey=${Usermukey:-"xxuesheng9527"}
 	sed -i "s#glzjin#${Usermukey}#" /root/shadowsocks/userapiconfig.py
