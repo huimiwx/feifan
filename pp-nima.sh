@@ -237,7 +237,7 @@ install_node(){
 	# 取消文件数量限制
 	sed -i '$a * hard nofile 512000\n* soft nofile 512000' /etc/security/limits.conf
 	read -p "Please input your domain(like:https://ss.feiyang.li or http://114.114.114.114): " Userdomain
-	read -p "Please input your muKey(like:mupass): " Usermukey
+	read -p "Please input your muKey(like:xxuesheng9527): " Usermukey
 	read -p "Please input your Node_ID(like:1): " UserNODE_ID
 	install_ssr_for_each
 	cd /root/shadowsocks
@@ -245,7 +245,7 @@ install_node(){
 	sed -i "s#'zhaoj.in'#'microsoft.com'#" /root/shadowsocks/userapiconfig.py
 	Userdomain=${Userdomain:-"http://127.0.0.1"}
 	sed -i "s#https://zhaoj.in#${Userdomain}#" /root/shadowsocks/userapiconfig.py
-	Usermukey=${Usermukey:-"mupass"}
+	Usermukey=${Usermukey:-"xxuesheng9527"}
 	sed -i "s#glzjin#${Usermukey}#" /root/shadowsocks/userapiconfig.py
 	UserNODE_ID=${UserNODE_ID:-"3"}
 	sed -i '2d' /root/shadowsocks/userapiconfig.py
